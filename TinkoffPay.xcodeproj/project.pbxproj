@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB92F79220E2A5EC000082DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92F79120E2A5EC000082DD /* AppDelegate.swift */; };
+		AB92F79420E2A5EC000082DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92F79320E2A5EC000082DD /* ViewController.swift */; };
+		AB92F79720E2A5EC000082DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB92F79520E2A5EC000082DD /* Main.storyboard */; };
+		AB92F79A20E2A5EC000082DD /* TinkoffPay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB92F79820E2A5EC000082DD /* TinkoffPay.xcdatamodeld */; };
+		AB92F79C20E2A5ED000082DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB92F79B20E2A5ED000082DD /* Assets.xcassets */; };
+		AB92F79F20E2A5ED000082DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB92F79D20E2A5ED000082DD /* LaunchScreen.storyboard */; };
+		AB92F7AA20E2A5ED000082DD /* TinkoffPayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92F7A920E2A5ED000082DD /* TinkoffPayTests.swift */; };
+		AB92F7B520E2A5ED000082DD /* TinkoffPayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92F7B420E2A5ED000082DD /* TinkoffPayUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AB92F7A620E2A5ED000082DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB92F78620E2A5EC000082DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB92F78D20E2A5EC000082DD;
+			remoteInfo = TinkoffPay;
+		};
+		AB92F7B120E2A5ED000082DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB92F78620E2A5EC000082DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB92F78D20E2A5EC000082DD;
+			remoteInfo = TinkoffPay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AB92F78E20E2A5EC000082DD /* TinkoffPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB92F79120E2A5EC000082DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AB92F79320E2A5EC000082DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AB92F79620E2A5EC000082DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AB92F79920E2A5EC000082DD /* TinkoffPay.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffPay.xcdatamodel; sourceTree = "<group>"; };
+		AB92F79B20E2A5ED000082DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AB92F79E20E2A5ED000082DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AB92F7A020E2A5ED000082DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB92F7A520E2A5ED000082DD /* TinkoffPayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinkoffPayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB92F7A920E2A5ED000082DD /* TinkoffPayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffPayTests.swift; sourceTree = "<group>"; };
+		AB92F7AB20E2A5ED000082DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB92F7B020E2A5ED000082DD /* TinkoffPayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinkoffPayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB92F7B420E2A5ED000082DD /* TinkoffPayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffPayUITests.swift; sourceTree = "<group>"; };
+		AB92F7B620E2A5ED000082DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AB92F78B20E2A5EC000082DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB92F7A220E2A5ED000082DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB92F7AD20E2A5ED000082DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB92F78520E2A5EC000082DD = {
+			isa = PBXGroup;
+			children = (
+				AB92F79020E2A5EC000082DD /* TinkoffPay */,
+				AB92F7A820E2A5ED000082DD /* TinkoffPayTests */,
+				AB92F7B320E2A5ED000082DD /* TinkoffPayUITests */,
+				AB92F78F20E2A5EC000082DD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AB92F78F20E2A5EC000082DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB92F78E20E2A5EC000082DD /* TinkoffPay.app */,
+				AB92F7A520E2A5ED000082DD /* TinkoffPayTests.xctest */,
+				AB92F7B020E2A5ED000082DD /* TinkoffPayUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB92F79020E2A5EC000082DD /* TinkoffPay */ = {
+			isa = PBXGroup;
+			children = (
+				AB92F79120E2A5EC000082DD /* AppDelegate.swift */,
+				AB92F79320E2A5EC000082DD /* ViewController.swift */,
+				AB92F79520E2A5EC000082DD /* Main.storyboard */,
+				AB92F79B20E2A5ED000082DD /* Assets.xcassets */,
+				AB92F79D20E2A5ED000082DD /* LaunchScreen.storyboard */,
+				AB92F7A020E2A5ED000082DD /* Info.plist */,
+				AB92F79820E2A5EC000082DD /* TinkoffPay.xcdatamodeld */,
+			);
+			path = TinkoffPay;
+			sourceTree = "<group>";
+		};
+		AB92F7A820E2A5ED000082DD /* TinkoffPayTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB92F7A920E2A5ED000082DD /* TinkoffPayTests.swift */,
+				AB92F7AB20E2A5ED000082DD /* Info.plist */,
+			);
+			path = TinkoffPayTests;
+			sourceTree = "<group>";
+		};
+		AB92F7B320E2A5ED000082DD /* TinkoffPayUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AB92F7B420E2A5ED000082DD /* TinkoffPayUITests.swift */,
+				AB92F7B620E2A5ED000082DD /* Info.plist */,
+			);
+			path = TinkoffPayUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AB92F78D20E2A5EC000082DD /* TinkoffPay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB92F7B920E2A5ED000082DD /* Build configuration list for PBXNativeTarget "TinkoffPay" */;
+			buildPhases = (
+				AB92F78A20E2A5EC000082DD /* Sources */,
+				AB92F78B20E2A5EC000082DD /* Frameworks */,
+				AB92F78C20E2A5EC000082DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TinkoffPay;
+			productName = TinkoffPay;
+			productReference = AB92F78E20E2A5EC000082DD /* TinkoffPay.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AB92F7A420E2A5ED000082DD /* TinkoffPayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB92F7BC20E2A5ED000082DD /* Build configuration list for PBXNativeTarget "TinkoffPayTests" */;
+			buildPhases = (
+				AB92F7A120E2A5ED000082DD /* Sources */,
+				AB92F7A220E2A5ED000082DD /* Frameworks */,
+				AB92F7A320E2A5ED000082DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB92F7A720E2A5ED000082DD /* PBXTargetDependency */,
+			);
+			name = TinkoffPayTests;
+			productName = TinkoffPayTests;
+			productReference = AB92F7A520E2A5ED000082DD /* TinkoffPayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AB92F7AF20E2A5ED000082DD /* TinkoffPayUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB92F7BF20E2A5ED000082DD /* Build configuration list for PBXNativeTarget "TinkoffPayUITests" */;
+			buildPhases = (
+				AB92F7AC20E2A5ED000082DD /* Sources */,
+				AB92F7AD20E2A5ED000082DD /* Frameworks */,
+				AB92F7AE20E2A5ED000082DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB92F7B220E2A5ED000082DD /* PBXTargetDependency */,
+			);
+			name = TinkoffPayUITests;
+			productName = TinkoffPayUITests;
+			productReference = AB92F7B020E2A5ED000082DD /* TinkoffPayUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AB92F78620E2A5EC000082DD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = kotvaska;
+				TargetAttributes = {
+					AB92F78D20E2A5EC000082DD = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					AB92F7A420E2A5ED000082DD = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = AB92F78D20E2A5EC000082DD;
+					};
+					AB92F7AF20E2A5ED000082DD = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = AB92F78D20E2A5EC000082DD;
+					};
+				};
+			};
+			buildConfigurationList = AB92F78920E2A5EC000082DD /* Build configuration list for PBXProject "TinkoffPay" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AB92F78520E2A5EC000082DD;
+			productRefGroup = AB92F78F20E2A5EC000082DD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AB92F78D20E2A5EC000082DD /* TinkoffPay */,
+				AB92F7A420E2A5ED000082DD /* TinkoffPayTests */,
+				AB92F7AF20E2A5ED000082DD /* TinkoffPayUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AB92F78C20E2A5EC000082DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB92F79F20E2A5ED000082DD /* LaunchScreen.storyboard in Resources */,
+				AB92F79C20E2A5ED000082DD /* Assets.xcassets in Resources */,
+				AB92F79720E2A5EC000082DD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB92F7A320E2A5ED000082DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB92F7AE20E2A5ED000082DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AB92F78A20E2A5EC000082DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB92F79420E2A5EC000082DD /* ViewController.swift in Sources */,
+				AB92F79220E2A5EC000082DD /* AppDelegate.swift in Sources */,
+				AB92F79A20E2A5EC000082DD /* TinkoffPay.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB92F7A120E2A5ED000082DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB92F7AA20E2A5ED000082DD /* TinkoffPayTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB92F7AC20E2A5ED000082DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB92F7B520E2A5ED000082DD /* TinkoffPayUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AB92F7A720E2A5ED000082DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB92F78D20E2A5EC000082DD /* TinkoffPay */;
+			targetProxy = AB92F7A620E2A5ED000082DD /* PBXContainerItemProxy */;
+		};
+		AB92F7B220E2A5ED000082DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB92F78D20E2A5EC000082DD /* TinkoffPay */;
+			targetProxy = AB92F7B120E2A5ED000082DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AB92F79520E2A5EC000082DD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB92F79620E2A5EC000082DD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AB92F79D20E2A5ED000082DD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB92F79E20E2A5ED000082DD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AB92F7B720E2A5ED000082DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AB92F7B820E2A5ED000082DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AB92F7BA20E2A5ED000082DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DYMKXHBMZ;
+				INFOPLIST_FILE = TinkoffPay/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kotvaska.TinkoffPay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AB92F7BB20E2A5ED000082DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DYMKXHBMZ;
+				INFOPLIST_FILE = TinkoffPay/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kotvaska.TinkoffPay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AB92F7BD20E2A5ED000082DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DYMKXHBMZ;
+				INFOPLIST_FILE = TinkoffPayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kotvaska.TinkoffPayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinkoffPay.app/TinkoffPay";
+			};
+			name = Debug;
+		};
+		AB92F7BE20E2A5ED000082DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DYMKXHBMZ;
+				INFOPLIST_FILE = TinkoffPayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kotvaska.TinkoffPayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinkoffPay.app/TinkoffPay";
+			};
+			name = Release;
+		};
+		AB92F7C020E2A5ED000082DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DYMKXHBMZ;
+				INFOPLIST_FILE = TinkoffPayUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kotvaska.TinkoffPayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TinkoffPay;
+			};
+			name = Debug;
+		};
+		AB92F7C120E2A5ED000082DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DYMKXHBMZ;
+				INFOPLIST_FILE = TinkoffPayUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kotvaska.TinkoffPayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TinkoffPay;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AB92F78920E2A5EC000082DD /* Build configuration list for PBXProject "TinkoffPay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB92F7B720E2A5ED000082DD /* Debug */,
+				AB92F7B820E2A5ED000082DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB92F7B920E2A5ED000082DD /* Build configuration list for PBXNativeTarget "TinkoffPay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB92F7BA20E2A5ED000082DD /* Debug */,
+				AB92F7BB20E2A5ED000082DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB92F7BC20E2A5ED000082DD /* Build configuration list for PBXNativeTarget "TinkoffPayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB92F7BD20E2A5ED000082DD /* Debug */,
+				AB92F7BE20E2A5ED000082DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB92F7BF20E2A5ED000082DD /* Build configuration list for PBXNativeTarget "TinkoffPayUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB92F7C020E2A5ED000082DD /* Debug */,
+				AB92F7C120E2A5ED000082DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AB92F79820E2A5EC000082DD /* TinkoffPay.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AB92F79920E2A5EC000082DD /* TinkoffPay.xcdatamodel */,
+			);
+			currentVersion = AB92F79920E2A5EC000082DD /* TinkoffPay.xcdatamodel */;
+			path = TinkoffPay.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = AB92F78620E2A5EC000082DD /* Project object */;
+}
