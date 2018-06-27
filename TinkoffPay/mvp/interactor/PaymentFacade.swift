@@ -94,7 +94,7 @@ class PaymentFacade {
                     completion?(nil, error)
                     return
                 }
-                strongSelf.databaseInteractor.save(news: response.paymentAccessList, completion: nil)
+                strongSelf.databaseInteractor.save(paymentAccessList: response.paymentAccessList, completion: nil)
                 completion?(response.paymentAccessList, error)
             }
         }

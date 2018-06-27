@@ -9,7 +9,7 @@ class DbClient {
 
     func save(tableName: String, object: NSManagedObject, completion: @escaping (Error?) -> ()) {
         let managedContext = persistentContainer.viewContext
-        // TODO:  let _ = PaymentEntity(entity: object.entity, insertInto: managedContext)
+        let _ = PaymentEntity(entity: object.entity, insertInto: managedContext)
 
         do {
             try managedContext.save()
@@ -21,14 +21,14 @@ class DbClient {
         }
     }
 
-    func update(tableName: String, object: NSManagedObject, completion: @escaping (Error?) -> ()) {
+    func update(tableName: String, object: NSManagedObject, predicate: NSPredicate, completion: @escaping (Error?) -> ()) {
         let managedContext = persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: tableName)
-        // TODO: fetchRequest.predicate = NSPredicate(format: "\(PaymentEntityMapped.idFieldName) like %@", argumentArray: [object.id])
+        fetchRequest.predicate = predicate
 
         do {
-            let newsObject = try managedContext.fetch(fetchRequest).first!
-            // TODO: newsObject.setValue(object.content, forKeyPath: PaymentEntityMapped.contentFieldName)
+            var newsObject = try managedContext.fetch(fetchRequest).first
+            newsObject = object
             try managedContext.save()
             completion(nil)
 
@@ -54,8 +54,7 @@ class DbClient {
     func fetchItem(tableName: String, partnerName: String, completion: @escaping (NSManagedObject?, Error?) -> ()) {
         let managedContext = persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: tableName)
-        // TODO: fetchRequest.predicate = NSPredicate(format: "\(PartnerEntity.idFieldName) like %@", argumentArray: [partnerName])
-        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(format: "\(PartnerEntity.partnerNameField) like %@", argumentArray: [partnerName])
 
         do {
             let news = try managedContext.fetch(fetchRequest).first
@@ -115,7 +114,7 @@ class DbClient {
 
     // MARK: - Core Data Saving support
 
-    func saveContext () {
+    func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

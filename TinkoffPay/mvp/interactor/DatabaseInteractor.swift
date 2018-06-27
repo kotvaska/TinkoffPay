@@ -4,8 +4,8 @@
 //
 
 import Foundation
+import CoreData
 
-// TODO:
 class DatabaseInteractor {
 
     private let dbClient: DbClient
@@ -15,66 +15,86 @@ class DatabaseInteractor {
     }
 
     func getPaymentAccessList(latitude: Double, longitude: Double, radius: Int, completion: Completion<[PaymentAccess]>? = nil) {
-        dbClient.fetchList(tableName: /*PaymentEntity.tableName*/"") { entities, error in
+        dbClient.fetchList(tableName: PaymentEntity.tableName) { entities, error in
             guard error == nil else {
                 completion?(nil, error)
                 return
             }
 
-            let accessList = [PaymentAccess]()
-//            let accessList = entities.flatMap { entity in
-//                PaymentAccess(externalId: <#T##String##Swift.String#>, partnerName: <#T##String##Swift.String#>, workHours: <#T##String##Swift.String#>, phones: <#T##String##Swift.String#>, fullAddress: <#T##String##Swift.String#>, bankInfo: <#T##String##Swift.String#>, location: <#T##Location##TinkoffPay.Location#>, name: <#T##String?##Swift.String?#>, picture: <#T##String?##Swift.String?#>)
-            
+            let accessList = entities
+                    .filter({ $0 is PaymentEntity })
+                    .compactMap({ $0 as? PaymentEntity })
+                    .compactMap { entity in
+                        PaymentAccess(externalId: entity.externalId ?? "", partnerName: entity.partnerName ?? "", workHours: entity.workHours ?? "",
+                                phones: entity.phones ?? "", fullAddress: entity.fullAddress ?? "", bankInfo: entity.bankInfo ?? "",
+                                location: Location(latitude: entity.latitude, longitude: entity.longitude), name: "", picture: "")
+                    }
+
             completion?(accessList, nil)
-            }
-        
+        }
+
     }
 
     func getPartnerList(completion: Completion<[Partner]>? = nil) {
-        dbClient.fetchList(tableName: /*PartnerEntity.tableName*/"") { entities, error in
+        dbClient.fetchList(tableName: PartnerEntity.tableName) { entities, error in
             guard error == nil else {
                 completion?(nil, error)
                 return
             }
 
-            let partnerList = [Partner]()
-//            let partnerList = entities.flatMap { entity in
-//                Partner(id: <#T##String##Swift.String#>, name: <#T##String##Swift.String#>, picture: <#T##String##Swift.String#>, url: <#T##String##Swift.String#>)
-//            }
+            let partnerList = entities
+                    .filter({ $0 is PartnerEntity })
+                    .compactMap({ $0 as? PartnerEntity })
+                    .compactMap { entity in
+                        Partner(id: entity.id ?? "", name: entity.name ?? "", picture: entity.picture ?? "", url: entity.url ?? "")
+                    }
             completion?(partnerList, nil)
         }
     }
 
-    func getPartner(partnerName: String, completion: Completion<PaymentAccess>? = nil) {
-        dbClient.fetchItem(tableName: /*PartnerEntity.tableName*/"", partnerName: partnerName) { entity, error in
-            guard let entity = entity, error == nil else {
+    func getPartner(partnerName: String, completion: Completion<Partner>? = nil) {
+        dbClient.fetchItem(tableName: PartnerEntity.tableName, partnerName: partnerName) { entity, error in
+            guard let entity = entity as? PartnerEntity, error == nil else {
                 completion?(nil, error)
                 return
             }
 
-            let access = PaymentAccess(externalId: "", partnerName: "", workHours: "", phones: "", fullAddress: "", bankInfo: "", location: Location(latitude: 1.0, longitude: 1.0), name: "", picture: "")
-//            let access = PaymentAccess(externalId: <#T##String##Swift.String#>, partnerName: <#T##String##Swift.String#>, workHours: <#T##String##Swift.String#>, phones: <#T##String##Swift.String#>, fullAddress: <#T##String##Swift.String#>, bankInfo: <#T##String##Swift.String#>, location: <#T##Location##TinkoffPay.Location#>, name: <#T##String?##Swift.String?#>, picture: <#T##String?##Swift.String?#>)
-            completion?(access, nil)
+            let partner = Partner(id: entity.id ?? "", name: entity.name ?? "", picture: entity.picture ?? "", url: entity.url ?? "")
+            completion?(partner, nil)
         }
     }
 
-    func save(news: [PaymentAccess], completion: ((Error?) -> ())?) {
-        news.forEach {
-            save(news: $0, completion: completion)
+    func save(paymentAccessList: [PaymentAccess], completion: ((Error?) -> ())?) {
+        paymentAccessList.forEach {
+            save(paymentAccess: $0, completion: completion)
         }
     }
 
-    private func save(news: PaymentAccess, completion: ((Error?) -> ())?) {
-        // TODO: dbClient.save(tableName: PaymentEntityMapped.tableName, object: news, completion: { e in completion?(e) })
+    private func save(paymentAccess: PaymentAccess, completion: ((Error?) -> ())?) {
+        let object = PaymentEntity(from: paymentAccess)
+        dbClient.save(tableName: PaymentEntity.tableName, object: object, completion: { e in completion?(e) })
     }
 
-    func update(news: PaymentAccess, completion: ((Error?) -> ())?) {
-        // TODO: dbClient.update(tableName: PaymentEntityMapped.tableName, news: news, completion: { e in completion?(e) })
+    private func save(partner: Partner, completion: ((Error?) -> ())?) {
+        let object = PartnerEntity(from: partner)
+        dbClient.save(tableName: PartnerEntity.tableName, object: object, completion: { e in completion?(e) })
+    }
+
+    func update(paymentAccess: PaymentAccess, completion: ((Error?) -> ())?) {
+        let object = PaymentEntity(from: paymentAccess)
+        let predicate = NSPredicate(format: "\(PaymentEntity.externalIdField) like %@", argumentArray: [object.externalId])
+        dbClient.update(tableName: PaymentEntity.tableName, object: object, predicate: predicate, completion: { e in completion?(e) })
+    }
+
+    func update(partner: Partner, completion: ((Error?) -> ())?) {
+        let object = PartnerEntity(from: partner)
+        let predicate = NSPredicate(format: "\(PartnerEntity.partnerNameField) like %@", argumentArray: [object.name])
+        dbClient.update(tableName: PaymentEntity.tableName, object: object, predicate: predicate, completion: { e in completion?(e) })
     }
 
     func clearAllData(completion: @escaping (Error?) -> ()) {
-        dbClient.clearAllData(tableName: /*PaymentEntity.tableName*/"", completion: completion)
-        dbClient.clearAllData(tableName: /*PartnerEntity.tableName*/"", completion: completion)
+        dbClient.clearAllData(tableName: PaymentEntity.tableName, completion: completion)
+        dbClient.clearAllData(tableName: PartnerEntity.tableName, completion: completion)
     }
 
 }
