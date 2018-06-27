@@ -6,4 +6,13 @@
 import Foundation
 
 class ImageInteractor {
+
+    func clearIcons(_ completion: @escaping () -> ()) {
+
+    }
+
+    func getPartnersIcons(_ completion: ([Partner], Error?) -> ()) {
+
+    }
+
 }

@@ -29,8 +29,12 @@ class InteractorManager {
         return DatabaseInteractor(dbClient: appConfiguration.dbClient)
     }
 
-    func newNewsFacade() -> PaymentFacade {
-        return PaymentFacade(paymentAccessInteractor: newPaymentAccessInteractor(), partnersInteractor: newPartnersInteractor(), databaseInteractor: newDatabaseInteractor())
+    func newPaymentFacade() -> PaymentFacade {
+        return PaymentFacade(paymentAccessInteractor: newPaymentAccessInteractor(), partnersInteractor: newPartnersInteractor(), databaseInteractor: newDatabaseInteractor(), imageInteractor: newImageInteractor())
+    }
+
+    func newLocationInteractor() -> LocationInteractor {
+        return LocationInteractor()
     }
 
 }

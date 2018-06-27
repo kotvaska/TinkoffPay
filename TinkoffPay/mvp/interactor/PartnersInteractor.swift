@@ -4,8 +4,11 @@
 //
 
 import Foundation
+import UIKit
 
 class PartnersInteractor {
+
+    private let mdpiBase: CGFloat = 480 / 320
 
     private let networkClient: NetworkClient
     private let modelSerializer: ModelSerializer
@@ -27,8 +30,6 @@ class PartnersInteractor {
                 return
             }
 
-            // TODO: update icons
-
             DispatchQueue.main.async {
                 completion?(response, nil)
             }
@@ -44,6 +45,24 @@ class PartnersInteractor {
     }
 
     private func getDpi() -> String {
-        return "mdpi"
+        switch getScreenMultiplier() / mdpiBase {
+        case 1:
+            return "mdpi"
+        case let differ where differ >= 1.5:
+            return "hdpi"
+        case let differ where differ >= 2:
+            return "xhdpi"
+        case let differ where differ >= 3:
+            return "xxhdpi"
+        default:
+            return "mdpi"
+
+        }
+
     }
+
+    private func getScreenMultiplier() -> CGFloat {
+        return UIScreen.main.bounds.size.height / UIScreen.main.bounds.size.width
+    }
+
 }

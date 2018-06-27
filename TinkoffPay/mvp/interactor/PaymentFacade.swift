@@ -12,44 +12,57 @@ class PaymentFacade {
     private let paymentAccessInteractor: PaymentAccessInteractor
     private let partnersInteractor: PartnersInteractor
     private let databaseInteractor: DatabaseInteractor
+    private let imageInteractor: ImageInteractor
 
-    init(paymentAccessInteractor: PaymentAccessInteractor, partnersInteractor: PartnersInteractor, databaseInteractor: DatabaseInteractor) {
+    init(paymentAccessInteractor: PaymentAccessInteractor, partnersInteractor: PartnersInteractor, databaseInteractor: DatabaseInteractor, imageInteractor: ImageInteractor) {
         self.paymentAccessInteractor = paymentAccessInteractor
         self.partnersInteractor = partnersInteractor
         self.databaseInteractor = databaseInteractor
+        self.imageInteractor = imageInteractor
     }
 
 
     func getPartnersList(completion: Completion<[Partner]>? = nil) {
-        databaseInteractor.getPartnerList() { [weak self] news, error in
-            guard let strongSelf = self, let news = news, error == nil else {
+        databaseInteractor.getPartnerList() { [weak self] partners, error in
+            guard let strongSelf = self, let partners = partners, error == nil else {
                 completion?(nil, error)
                 return
             }
 
-            if news.isEmpty {
-                strongSelf.updatePartnersIcons()
+            if partners.isEmpty {
+                strongSelf.loadPartnersIcons(partners: partners)
             } else {
-                completion?(news, error)
+                completion?(partners, error)
+                strongSelf.updatePartnersIcons()
             }
         }
 
     }
 
+    private func loadPartnersIcons(partners: [Partner]) {
+        imageInteractor.clearIcons() { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            partners.forEach {
+                strongSelf.partnersInteractor.updatePartnerIcon(partner: $0)
+            }
+        }
+    }
+
     func updatePartnersIcons(completion: Completion<[Partner]>? = nil) {
-        // TODO:
-//        databaseInteractor.getPartnersIcons() { [weak self] icons, error in
-//            guard let strongSelf = self, let icons = icons, error == nil else {
-//                completion?(nil, error)
-//                return
-//            }
-//
-//            if icons.isEmpty {
-//                strongSelf.partnersInteractor.updatePartners()
-//            } else {
-//                completion?(icons, error)
-//            }
-//        }
+        imageInteractor.getPartnersIcons() { [weak self] icons, error in
+            guard let strongSelf = self, error == nil else {
+                completion?(nil, error)
+                return
+            }
+
+            if icons.isEmpty {
+                strongSelf.partnersInteractor.updatePartners()
+            } else {
+                completion?(icons, error)
+            }
+        }
 
     }
 

@@ -1,5 +1,5 @@
 //
-// Created by Anastasia Zolotykh on 29.04.2018.
+// Created by Anastasia Zolotykh on 26.06.2018.
 // Copyright (c) 2018 kotvaska. All rights reserved.
 //
 
@@ -10,24 +10,39 @@ class PaymentPresenter: BasePresenter {
     typealias V = PaymentView
     var view: V!
     var controllerTitle: String = "Точки пополнения"
+    private let radius = 1000
 
     private var paymentFacade: PaymentFacade!
+    private var locationInteractor: LocationInteractor!
     private var paymentAccess: [PaymentAccess] = []
 
     required init(view: V) {
         self.view = view
     }
 
-    convenience init(view: PaymentView, paymentFacade: PaymentFacade) {
+    convenience init(view: PaymentView, paymentFacade: PaymentFacade, locationInteractor: LocationInteractor) {
         self.init(view: view)
         self.paymentFacade = paymentFacade
+        self.locationInteractor = locationInteractor
     }
 
     func viewDidLoad() {
         view.startLoading()
-        loadData(loadRequest: { _ in return paymentFacade.getPaymentAccessList(latitude: 55.755786, longitude: 37.617633, radius: 1000, completion: nil) }) {
-            self.view.finishLoading()
+
+        locationInteractor.requestCurrentLocation() { [weak self] coordinates, error in
+            guard let strongSelf = self, let coordinates = coordinates, error == nil else {
+                return
+            }
+            strongSelf.loadData(loadRequest: { _ in
+                return strongSelf.paymentFacade.getPaymentAccessList(
+                        latitude: coordinates.latitude,
+                        longitude: coordinates.longitude,
+                        radius: strongSelf.radius)
+            }) {
+                strongSelf.view.finishLoading()
+            }
         }
+
     }
 
     private func loadData(loadRequest: (Completion<[PaymentAccess]>?) -> (), completion: @escaping () -> ()) {
@@ -40,14 +55,7 @@ class PaymentPresenter: BasePresenter {
                 return
             }
             strongSelf.paymentAccess = models
-            strongSelf.view.updateDataSource(news: models)
             completion()
-        }
-    }
-
-    func refresh() {
-        loadData(loadRequest: { _ in return paymentFacade.updatePaymentAccessList(latitude: 55.755786, longitude: 37.617633, radius: 1000, completion: nil) }) {
-            self.view.hideRefreshLoader()
         }
     }
 
