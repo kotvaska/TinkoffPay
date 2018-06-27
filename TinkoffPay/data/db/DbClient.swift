@@ -9,7 +9,7 @@ class DbClient {
 
     func save(tableName: String, object: NSManagedObject, completion: @escaping (Error?) -> ()) {
         let managedContext = persistentContainer.viewContext
-        let _ = PaymentEntityMapped(entity: object.entity, insertInto: managedContext)
+        // TODO:  let _ = PaymentEntity(entity: object.entity, insertInto: managedContext)
 
         do {
             try managedContext.save()
@@ -54,7 +54,7 @@ class DbClient {
     func fetchItem(tableName: String, partnerName: String, completion: @escaping (NSManagedObject?, Error?) -> ()) {
         let managedContext = persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: tableName)
-        fetchRequest.predicate = NSPredicate(format: "\(PartnerEntityMapped.idFieldName) like %@", argumentArray: [partnerName])
+        // TODO: fetchRequest.predicate = NSPredicate(format: "\(PartnerEntity.idFieldName) like %@", argumentArray: [partnerName])
         fetchRequest.fetchLimit = 1
 
         do {
