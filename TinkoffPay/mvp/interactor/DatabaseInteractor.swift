@@ -70,24 +70,32 @@ class DatabaseInteractor {
         }
     }
 
+    func save(partnerList: [Partner], completion: ((Error?) -> ())?) {
+        partnerList.forEach {
+            save(partner: $0, completion: completion)
+        }
+    }
+
     private func save(paymentAccess: PaymentAccess, completion: ((Error?) -> ())?) {
-        let object = PaymentEntity(from: paymentAccess)
-        dbClient.save(tableName: PaymentEntity.tableName, object: object, completion: { e in completion?(e) })
+        dbClient.save(tableName: PaymentEntity.tableName, paymentAccess: paymentAccess, completion: { e in completion?(e) })
     }
 
     private func save(partner: Partner, completion: ((Error?) -> ())?) {
-        let object = PartnerEntity(from: partner)
-        dbClient.save(tableName: PartnerEntity.tableName, object: object, completion: { e in completion?(e) })
+        dbClient.save(tableName: PartnerEntity.tableName, partner: partner, completion: { e in completion?(e) })
     }
 
     func update(paymentAccess: PaymentAccess, completion: ((Error?) -> ())?) {
-        let object = PaymentEntity(from: paymentAccess)
+        let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
+        let object = PaymentEntity.init(entity: NSEntityDescription.entity(forEntityName: PaymentEntity.tableName, in: managedObjectContext)!, insertInto: managedObjectContext)
+        object.copy(from: paymentAccess)
         let predicate = NSPredicate(format: "\(PaymentEntity.externalIdField) like %@", argumentArray: [object.externalId])
         dbClient.update(tableName: PaymentEntity.tableName, object: object, predicate: predicate, completion: { e in completion?(e) })
     }
 
     func update(partner: Partner, completion: ((Error?) -> ())?) {
-        let object = PartnerEntity(from: partner)
+        let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
+        let object = PartnerEntity.init(entity: NSEntityDescription.entity(forEntityName: PartnerEntity.tableName, in: managedObjectContext)!, insertInto: managedObjectContext)
+        object.copy(from: partner)
         let predicate = NSPredicate(format: "\(PartnerEntity.partnerNameField) like %@", argumentArray: [object.name])
         dbClient.update(tableName: PaymentEntity.tableName, object: object, predicate: predicate, completion: { e in completion?(e) })
     }

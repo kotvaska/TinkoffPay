@@ -14,4 +14,11 @@ class WebLoader {
         }.resume()
     }
 
+    func downloadImage(url: URL, completion: @escaping (URL?, Error?) -> ()) {
+        URLSession.shared.downloadTask(with: url) { (url, response, error) in
+            print("kotvaska --- image load allHeaderFields: \((response as? HTTPURLResponse)?.allHeaderFields)")
+            completion(url, error)
+        }.resume()
+    }
+
 }

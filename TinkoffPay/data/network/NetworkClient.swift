@@ -19,6 +19,7 @@ class NetworkClient {
 
     private func getPayload(url: URL) -> Resource<BaseResponse> {
         return Resource<BaseResponse>(url: url) { [unowned self] data in
+            print("kotvaska --- url: \(url) response: \(String(data: data, encoding: .utf8))")
             var model: BaseResponse? = self.modelSerializer.deserializeToStruct(fromData: data)
             model?.payload = data
             return model
@@ -37,8 +38,8 @@ class NetworkClient {
         webService.load(resource: getPayload(url: urlBuilder.partnerList()), completion: completion)
     }
 
-    func updatePartnerIcon(dpi: String, partnerIconName: String, completion: @escaping (BaseResponse?, Error?) -> ()) {
-        webService.load(resource: getPayload(url: urlBuilder.partnerIcon(dpi: dpi, partnerIconName: partnerIconName)), completion: completion)
+    func updatePartnerIcon(dpi: String, partnerIconName: String, completion: @escaping (URL?, Error?) -> ()) {
+        webService.downloadImage(url: urlBuilder.partnerIcon(dpi: dpi, partnerIconName: partnerIconName), completion: completion)
     }
 
 }

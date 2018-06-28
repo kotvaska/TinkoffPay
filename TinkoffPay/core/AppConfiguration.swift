@@ -18,9 +18,9 @@ class AppConfiguration {
         modelSerializer = ModelSerializer()
         dbClient = DbClient()
 
-        //https://www-qa.tinkoff.ru/api/
-        //https://www-qa.tcsbank.ru/api/
-        let baseUrl = "https://api.tinkoff.ru/"
+        //https://www-qa.tinkoff.ru/api
+        //https://www-qa.tcsbank.ru/api
+        let baseUrl = "https://api.tinkoff.ru"
         urlBuilder = UrlBuilder(baseUrl: baseUrl)
         networkClient = NetworkClient(urlBuilder: urlBuilder, modelSerializer: modelSerializer)
 
