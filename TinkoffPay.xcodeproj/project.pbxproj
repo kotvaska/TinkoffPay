@@ -11,11 +11,13 @@
 		2790405DF6411A0FA2F63C72 /* InteractorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790485A222E21F759D4499B /* InteractorManager.swift */; };
 		279044476D5194B5C5DCAE3E /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27904AF37DE316834D7BD38E /* AppConfiguration.swift */; };
 		2790452BEF7D5A30F1FCBDCC /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27904813668BBE0DD4A4B4A1 /* BaseController.swift */; };
+		279045EA48DA55E74EA08272 /* ImageStorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790464BB6CCA8BADE8AF277 /* ImageStorageError.swift */; };
 		279046A18A9356E21716B603 /* ImageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279049CC44BD9E8EC704E0B5 /* ImageInteractor.swift */; };
 		27904791A66D551943B51D49 /* tinkoff-bank-general-logo-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 279045F5BF1746B369E74C16 /* tinkoff-bank-general-logo-1.jpg */; };
 		279048A3846BE5A9A8525BE6 /* LocationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790447DDA2B548C159292AC /* LocationInteractor.swift */; };
 		279048A90D6E67068395BCC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27904FE6CCF4EF8CE2108594 /* LaunchScreen.storyboard */; };
 		27904A366855184A7A723DF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279047DEC8ED33EA722BD021 /* AppDelegate.swift */; };
+		27904BD496B9E4BCEC51D324 /* PartnerIconResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279046C9CA904323048D0BA3 /* PartnerIconResponse.swift */; };
 		27904C0F80CC3EDB053D4705 /* PartnersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27904EE27AB71687E8B9CB76 /* PartnersInteractor.swift */; };
 		27904EA0C760E40CE62FE525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27904A40A7D86E43853380FE /* Assets.xcassets */; };
 		AB028A8020E3A8AE00C5E99A /* PartnerEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB028A7C20E3A8AE00C5E99A /* PartnerEntity+CoreDataClass.swift */; };
@@ -69,6 +71,8 @@
 /* Begin PBXFileReference section */
 		2790447DDA2B548C159292AC /* LocationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInteractor.swift; sourceTree = "<group>"; };
 		279045F5BF1746B369E74C16 /* tinkoff-bank-general-logo-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tinkoff-bank-general-logo-1.jpg"; sourceTree = "<group>"; };
+		2790464BB6CCA8BADE8AF277 /* ImageStorageError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStorageError.swift; sourceTree = "<group>"; };
+		279046C9CA904323048D0BA3 /* PartnerIconResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerIconResponse.swift; sourceTree = "<group>"; };
 		279047DEC8ED33EA722BD021 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27904813668BBE0DD4A4B4A1 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		279048153188F1B90363ACB9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 				AB92F7CC20E2B14D000082DD /* PartnerResponse.swift */,
 				AB92F7CD20E2B14D000082DD /* BaseResponse.swift */,
 				AB92F7CE20E2B14D000082DD /* PaymentAccessResponse.swift */,
+				279046C9CA904323048D0BA3 /* PartnerIconResponse.swift */,
 			);
 			path = response;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				AB92F7D220E2B14D000082DD /* Models.swift */,
+				2790464BB6CCA8BADE8AF277 /* ImageStorageError.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -510,6 +516,8 @@
 				27904C0F80CC3EDB053D4705 /* PartnersInteractor.swift in Sources */,
 				279046A18A9356E21716B603 /* ImageInteractor.swift in Sources */,
 				279048A3846BE5A9A8525BE6 /* LocationInteractor.swift in Sources */,
+				27904BD496B9E4BCEC51D324 /* PartnerIconResponse.swift in Sources */,
+				279045EA48DA55E74EA08272 /* ImageStorageError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
