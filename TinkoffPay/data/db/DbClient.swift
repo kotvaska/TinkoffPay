@@ -7,10 +7,33 @@ import CoreData
 
 class DbClient {
 
-    func save(tableName: String, object: NSManagedObject, completion: @escaping (Error?) -> ()) {
+    func save(tableName: String, paymentAccess: PaymentAccess, completion: @escaping (Error?) -> ()) {
         let managedContext = persistentContainer.viewContext
-        let _ = PaymentEntity(entity: object.entity, insertInto: managedContext)
+        guard let entity = NSEntityDescription.entity(forEntityName: tableName, in: managedContext) else {
+            completion(DbError())
+            return
+        }
 
+        let object = PaymentEntity(entity: entity, insertInto: managedContext)
+        object.copy(from: paymentAccess)
+
+        save(object: object, managedContext: managedContext, completion: completion)
+    }
+
+    func save(tableName: String, partner: Partner, completion: @escaping (Error?) -> ()) {
+        let managedContext = persistentContainer.viewContext
+        guard let entity = NSEntityDescription.entity(forEntityName: tableName, in: managedContext) else {
+            completion(DbError())
+            return
+        }
+
+        let object = PartnerEntity(entity: entity, insertInto: managedContext)
+        object.copy(from: partner)
+
+        save(object: object, managedContext: managedContext, completion: completion)
+    }
+
+    private func save(object: NSManagedObject, managedContext: NSManagedObjectContext, completion: @escaping (Error?) -> ()) {
         do {
             try managedContext.save()
             completion(nil)

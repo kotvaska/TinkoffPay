@@ -17,8 +17,7 @@ public class PaymentEntity: NSManagedObject {
 
     static let externalIdField = "externalId"
 
-    convenience init(from model: PaymentAccess) {
-        self.init()
+    func copy(from model: PaymentAccess) {
         self.bankInfo = model.bankInfo
         self.externalId = model.externalId
         self.fullAddress = model.fullAddress

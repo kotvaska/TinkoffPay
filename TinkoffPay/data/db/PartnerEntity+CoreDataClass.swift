@@ -17,8 +17,7 @@ public class PartnerEntity: NSManagedObject {
 
     static let partnerNameField = "partnerName"
 
-    convenience init(from model: Partner) {
-        self.init()
+    func copy(from model: Partner) {
         self.id = model.id
         self.name = model.name
         self.picture = model.picture
