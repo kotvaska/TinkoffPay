@@ -30,7 +30,7 @@ class NetworkClient {
         webService.load(resource: getPayload(url: urlBuilder.paymentListAll(latitude: latitude, longitude: longitude, radius: radius)), completion: completion)
     }
 
-    func updatePaymentAccessPartnerList(partnerName: String, latitude: Double, longitude: Double, radius: Int = 1000, completion: @escaping (BaseResponse?, Error?) -> ()) {
+    func updatePaymentAccessPartnerList(partnerName: String, latitude: Double, longitude: Double, radius: Int, completion: @escaping (BaseResponse?, Error?) -> ()) {
         webService.load(resource: getPayload(url: urlBuilder.paymentListPartner(partnerName: partnerName, latitude: latitude, longitude: longitude, radius: radius)), completion: completion)
     }
 
@@ -38,7 +38,7 @@ class NetworkClient {
         webService.load(resource: getPayload(url: urlBuilder.partnerList()), completion: completion)
     }
 
-    func updatePartnerIcon(dpi: String, partnerIconName: String, completion: @escaping (URL?, Error?) -> ()) {
+    func updatePartnerIcon(dpi: String, partnerIconName: String, completion: @escaping (URL?, String?, Error?) -> ()) {
         webService.downloadImage(url: urlBuilder.partnerIcon(dpi: dpi, partnerIconName: partnerIconName), completion: completion)
     }
 

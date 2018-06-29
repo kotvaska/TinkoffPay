@@ -37,14 +37,16 @@ class PartnersInteractor {
     }
 
     func updatePartnerIcon(partner: Partner, completion: Completion<PartnerIconResponse>? = nil) {
-        networkClient.updatePartnerIcon(dpi: getDpi(), partnerIconName: partner.picture) { [weak self] url, error in
+        networkClient.updatePartnerIcon(dpi: getDpi(), partnerIconName: partner.picture) { [weak self] url, lastModified, error in
             guard let strongSelf = self, let url = url, error == nil else {
                 completion?(nil, error)
                 return
             }
             let data = strongSelf.imageInteractor.saveIcon(iconName: partner.picture, oldUrl: url)
+            var newPartner = partner
+            newPartner.lastModified = lastModified
             DispatchQueue.main.async {
-                completion?(PartnerIconResponse(data: data), nil)
+                completion?(PartnerIconResponse(data: data, partner: newPartner), nil)
             }
         }
     }

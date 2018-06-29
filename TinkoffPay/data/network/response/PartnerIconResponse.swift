@@ -8,6 +8,7 @@ import Foundation
 struct PartnerIconResponse: Codable {
 
     let data: Data?
+    let partner: Partner
 
 }
 
