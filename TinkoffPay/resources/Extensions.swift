@@ -4,6 +4,7 @@
 //
 
 import CoreData
+import UIKit
 
 protocol CoreDataPO {
 }
@@ -12,3 +13,15 @@ protocol CoreDataMO {
     func copyValues(from model: CoreDataPO)
 }
 
+extension UIImage {
+
+    func resize(canvasSize: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, self.scale)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        self.draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+
+}

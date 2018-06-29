@@ -29,14 +29,14 @@ class ImageInteractor {
         }
     }
 
-    func loadImage(imageName: String?) -> UIImage? {
+    func loadResizedImage(imageName: String?, canvasSize: CGSize = CGSize(width: 30, height: 30)) -> UIImage? {
         if let imageName = imageName {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let fileUrl = documentsURL.appendingPathComponent(imageName)
             if FileManager.default.fileExists(atPath: fileUrl.path) {
                 do {
                     let imageData = try Data(contentsOf: fileUrl)
-                    return UIImage(data: imageData)
+                    return UIImage(data: imageData)?.resize(canvasSize: canvasSize)
 
                 } catch let e {
                     return nil

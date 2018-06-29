@@ -17,7 +17,7 @@ class PaymentMapDelegate: NSObject, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? PaymentAccessAnnotation else { return nil }
         let annotationView = PaymentAccessAnnotationView(annotation: annotation, reuseIdentifier: PaymentAccessAnnotationView.ID)
-        annotationView.image = imageInteractor.loadImage(imageName: annotation.picture)
+        annotationView.image = imageInteractor.loadResizedImage(imageName: annotation.picture)
         annotationView.canShowCallout = true
         return annotationView
 
