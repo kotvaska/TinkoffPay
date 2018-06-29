@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(PartnerEntity)
-public class PartnerEntity: NSManagedObject {
+public class PartnerEntity: NSManagedObject, CoreDataMO {
 
     static let tableName = "PartnerEntity"
 
@@ -23,6 +23,12 @@ public class PartnerEntity: NSManagedObject {
         self.picture = model.picture
         self.url = model.url
 
+    }
+
+    func copyValues(from model: CoreDataPO) {
+        if let model = model as? Partner {
+            copy(from: model)
+        }
     }
 
 }

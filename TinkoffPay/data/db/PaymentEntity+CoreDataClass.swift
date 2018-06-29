@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(PaymentEntity)
-public class PaymentEntity: NSManagedObject {
+public class PaymentEntity: NSManagedObject, CoreDataMO {
 
     static let tableName = "PaymentEntity"
 
@@ -26,6 +26,12 @@ public class PaymentEntity: NSManagedObject {
         self.partnerName = model.partnerName
         self.phones = model.phones
         self.workHours = model.workHours
+    }
+
+    func copyValues(from model: CoreDataPO) {
+        if let model = model as? PaymentAccess {
+            copy(from: model)
+        }
     }
 
 }

@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		27904047E554FCEF09877F8E /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27904BD1CE52245B8A09F547 /* PaymentViewController.swift */; };
 		2790405DF6411A0FA2F63C72 /* InteractorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790485A222E21F759D4499B /* InteractorManager.swift */; };
+		27904177D3C40ECDD7085B66 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279049B0F6799A37870D0737 /* Extensions.swift */; };
 		279044476D5194B5C5DCAE3E /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27904AF37DE316834D7BD38E /* AppConfiguration.swift */; };
 		2790452BEF7D5A30F1FCBDCC /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27904813668BBE0DD4A4B4A1 /* BaseController.swift */; };
+		279045673B7970DC720D9871 /* PaymentAccessAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279041257AAFD61FA7DDB100 /* PaymentAccessAnnotationView.swift */; };
 		279045EA48DA55E74EA08272 /* ImageStorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790464BB6CCA8BADE8AF277 /* ImageStorageError.swift */; };
+		27904607E46D0D7D0B97F29E /* PaymentMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790467A7FA51EEB5E947815 /* PaymentMapDelegate.swift */; };
 		279046A18A9356E21716B603 /* ImageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279049CC44BD9E8EC704E0B5 /* ImageInteractor.swift */; };
 		27904791A66D551943B51D49 /* tinkoff-bank-general-logo-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 279045F5BF1746B369E74C16 /* tinkoff-bank-general-logo-1.jpg */; };
 		279048A3846BE5A9A8525BE6 /* LocationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790447DDA2B548C159292AC /* LocationInteractor.swift */; };
@@ -69,14 +72,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		279041257AAFD61FA7DDB100 /* PaymentAccessAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentAccessAnnotationView.swift; sourceTree = "<group>"; };
 		2790447DDA2B548C159292AC /* LocationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInteractor.swift; sourceTree = "<group>"; };
 		279045F5BF1746B369E74C16 /* tinkoff-bank-general-logo-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tinkoff-bank-general-logo-1.jpg"; sourceTree = "<group>"; };
 		2790464BB6CCA8BADE8AF277 /* ImageStorageError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStorageError.swift; sourceTree = "<group>"; };
+		2790467A7FA51EEB5E947815 /* PaymentMapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMapDelegate.swift; sourceTree = "<group>"; };
 		279046C9CA904323048D0BA3 /* PartnerIconResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerIconResponse.swift; sourceTree = "<group>"; };
 		279047DEC8ED33EA722BD021 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27904813668BBE0DD4A4B4A1 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		279048153188F1B90363ACB9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		2790485A222E21F759D4499B /* InteractorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractorManager.swift; sourceTree = "<group>"; };
+		279049B0F6799A37870D0737 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		279049CC44BD9E8EC704E0B5 /* ImageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageInteractor.swift; sourceTree = "<group>"; };
 		27904A40A7D86E43853380FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27904AF37DE316834D7BD38E /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
@@ -144,6 +150,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		279042AC5065F41D577DC4EB /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				2790467A7FA51EEB5E947815 /* PaymentMapDelegate.swift */,
+			);
+			path = delegate;
+			sourceTree = "<group>";
+		};
+		279049A86BB8311A371C1FF6 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				279041257AAFD61FA7DDB100 /* PaymentAccessAnnotationView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		AB92F78520E2A5EC000082DD = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +265,7 @@
 				27904C98EB18120986C1B54A /* TinkoffPay.xcdatamodel */,
 				27904A40A7D86E43853380FE /* Assets.xcassets */,
 				279048153188F1B90363ACB9 /* Info.plist */,
+				279049B0F6799A37870D0737 /* Extensions.swift */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -253,6 +276,8 @@
 				ABF7DB3F20E3AC3400BF673C /* Main.storyboard */,
 				27904FE6CCF4EF8CE2108594 /* LaunchScreen.storyboard */,
 				AB92F80020E2B24F000082DD /* PaymentViewController.xib */,
+				279042AC5065F41D577DC4EB /* delegate */,
+				279049A86BB8311A371C1FF6 /* view */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -518,6 +543,9 @@
 				279048A3846BE5A9A8525BE6 /* LocationInteractor.swift in Sources */,
 				27904BD496B9E4BCEC51D324 /* PartnerIconResponse.swift in Sources */,
 				279045EA48DA55E74EA08272 /* ImageStorageError.swift in Sources */,
+				27904607E46D0D7D0B97F29E /* PaymentMapDelegate.swift in Sources */,
+				279045673B7970DC720D9871 /* PaymentAccessAnnotationView.swift in Sources */,
+				27904177D3C40ECDD7085B66 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

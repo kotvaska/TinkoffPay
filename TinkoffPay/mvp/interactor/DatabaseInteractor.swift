@@ -14,7 +14,7 @@ class DatabaseInteractor {
         self.dbClient = dbClient
     }
 
-    func getPaymentAccessList(latitude: Double, longitude: Double, radius: Int, completion: Completion<[PaymentAccess]>? = nil) {
+    func getPaymentAccessList(latitude: Double, longitude: Double, radius: Double, completion: Completion<[PaymentAccess]>? = nil) {
         dbClient.fetchList(tableName: PaymentEntity.tableName) { entities, error in
             guard error == nil else {
                 completion?(nil, error)
@@ -52,18 +52,6 @@ class DatabaseInteractor {
         }
     }
 
-    func getPartner(partnerName: String, completion: Completion<Partner>? = nil) {
-        dbClient.fetchItem(tableName: PartnerEntity.tableName, partnerName: partnerName) { entity, error in
-            guard let entity = entity as? PartnerEntity, error == nil else {
-                completion?(nil, error)
-                return
-            }
-
-            let partner = Partner(id: entity.id ?? "", name: entity.name ?? "", picture: entity.picture ?? "", url: entity.url ?? "")
-            completion?(partner, nil)
-        }
-    }
-
     func save(paymentAccessList: [PaymentAccess], completion: ((Error?) -> ())?) {
         paymentAccessList.forEach {
             save(paymentAccess: $0, completion: completion)
@@ -77,27 +65,16 @@ class DatabaseInteractor {
     }
 
     private func save(paymentAccess: PaymentAccess, completion: ((Error?) -> ())?) {
-        dbClient.save(tableName: PaymentEntity.tableName, paymentAccess: paymentAccess, completion: { e in completion?(e) })
+        dbClient.save(tableName: PaymentEntity.tableName, model: paymentAccess, completion: { e in completion?(e) }) as? PaymentEntity
     }
 
     private func save(partner: Partner, completion: ((Error?) -> ())?) {
-        dbClient.save(tableName: PartnerEntity.tableName, partner: partner, completion: { e in completion?(e) })
-    }
-
-    func update(paymentAccess: PaymentAccess, completion: ((Error?) -> ())?) {
-        let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
-        let object = PaymentEntity.init(entity: NSEntityDescription.entity(forEntityName: PaymentEntity.tableName, in: managedObjectContext)!, insertInto: managedObjectContext)
-        object.copy(from: paymentAccess)
-        let predicate = NSPredicate(format: "\(PaymentEntity.externalIdField) like %@", argumentArray: [object.externalId])
-        dbClient.update(tableName: PaymentEntity.tableName, object: object, predicate: predicate, completion: { e in completion?(e) })
+        dbClient.save(tableName: PartnerEntity.tableName, model: partner, completion: { e in completion?(e) }) as? PartnerEntity
     }
 
     func update(partner: Partner, completion: ((Error?) -> ())?) {
-        let managedObjectContext = NSManagedObjectContext.init(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
-        let object = PartnerEntity.init(entity: NSEntityDescription.entity(forEntityName: PartnerEntity.tableName, in: managedObjectContext)!, insertInto: managedObjectContext)
-        object.copy(from: partner)
-        let predicate = NSPredicate(format: "\(PartnerEntity.partnerNameField) like %@", argumentArray: [object.name])
-        dbClient.update(tableName: PaymentEntity.tableName, object: object, predicate: predicate, completion: { e in completion?(e) })
+        let predicate = NSPredicate(format: "\(PartnerEntity.partnerNameField) like %@", argumentArray: [partner.id])
+        dbClient.update(tableName: PaymentEntity.tableName, partner: partner, predicate: predicate, completion: { e in completion?(e) })
     }
 
     func clearAllData(completion: @escaping (Error?) -> ()) {

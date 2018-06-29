@@ -21,5 +21,6 @@ extension PartnerEntity {
     @NSManaged public var name: String?
     @NSManaged public var picture: String?
     @NSManaged public var url: String?
+    @NSManaged public var lastModified: String?
 
 }

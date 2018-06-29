@@ -1,5 +1,5 @@
 //
-// Created by Anastasia Zolotykh on 28.04.2018.
+// Created by Anastasia Zolotykh on 26.06.2018.
 // Copyright (c) 2018 kotvaska. All rights reserved.
 //
 
@@ -7,30 +7,22 @@ import CoreData
 
 class DbClient {
 
-    func save(tableName: String, paymentAccess: PaymentAccess, completion: @escaping (Error?) -> ()) {
+    func save<Model: CoreDataPO, Object: NSManagedObject>(tableName: String, model: Model, completion: @escaping (Error?) -> ()) -> Object? {
         let managedContext = persistentContainer.viewContext
         guard let entity = NSEntityDescription.entity(forEntityName: tableName, in: managedContext) else {
             completion(DbError())
-            return
+            return nil
         }
 
-        let object = PaymentEntity(entity: entity, insertInto: managedContext)
-        object.copy(from: paymentAccess)
-
-        save(object: object, managedContext: managedContext, completion: completion)
-    }
-
-    func save(tableName: String, partner: Partner, completion: @escaping (Error?) -> ()) {
-        let managedContext = persistentContainer.viewContext
-        guard let entity = NSEntityDescription.entity(forEntityName: tableName, in: managedContext) else {
-            completion(DbError())
-            return
+        let object = Object(entity: entity, insertInto: managedContext)
+        if let object = object as? CoreDataMO {
+            object.copyValues(from: model)
         }
 
-        let object = PartnerEntity(entity: entity, insertInto: managedContext)
-        object.copy(from: partner)
-
         save(object: object, managedContext: managedContext, completion: completion)
+
+        return object
+
     }
 
     private func save(object: NSManagedObject, managedContext: NSManagedObjectContext, completion: @escaping (Error?) -> ()) {
@@ -44,14 +36,14 @@ class DbClient {
         }
     }
 
-    func update(tableName: String, object: NSManagedObject, predicate: NSPredicate, completion: @escaping (Error?) -> ()) {
+    func update(tableName: String, partner: Partner, predicate: NSPredicate, completion: @escaping (Error?) -> ()) {
         let managedContext = persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: tableName)
         fetchRequest.predicate = predicate
 
         do {
-            var newsObject = try managedContext.fetch(fetchRequest).first
-            newsObject = object
+            let newObject = try managedContext.fetch(fetchRequest).first as? PartnerEntity
+            newObject?.lastModified = partner.lastModified
             try managedContext.save()
             completion(nil)
 
@@ -65,26 +57,11 @@ class DbClient {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: tableName)
 
         do {
-            let news = try managedContext.fetch(fetchRequest)
-            completion(news, nil)
+            let objects = try managedContext.fetch(fetchRequest)
+            completion(objects, nil)
 
         } catch let error as NSError {
             completion([], error)
-
-        }
-    }
-
-    func fetchItem(tableName: String, partnerName: String, completion: @escaping (NSManagedObject?, Error?) -> ()) {
-        let managedContext = persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: tableName)
-        fetchRequest.predicate = NSPredicate(format: "\(PartnerEntity.partnerNameField) like %@", argumentArray: [partnerName])
-
-        do {
-            let news = try managedContext.fetch(fetchRequest).first
-            completion(news, nil)
-
-        } catch let error as NSError {
-            completion(nil, error)
 
         }
     }
