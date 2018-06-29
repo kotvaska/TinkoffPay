@@ -9,6 +9,8 @@ import MapKit
 class PaymentViewController: BaseController<PaymentPresenter>, PaymentView {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var buttonIn: UIButton!
+    @IBOutlet weak var buttonOut: UIButton!
 
     private var delegate: PaymentMapDelegate!
 
@@ -32,6 +34,11 @@ class PaymentViewController: BaseController<PaymentPresenter>, PaymentView {
         mapView.delegate = delegate
     }
 
+    func setCurrentLocationButton() {
+        let buttonItem = MKUserTrackingBarButtonItem(mapView: mapView)
+        self.navigationItem.rightBarButtonItem = buttonItem
+    }
+
     func setRegion(radius: Double, latitude: Double, longitude: Double) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: latitude, longitude: longitude), radius, radius)
         mapView.setRegion(coordinateRegion, animated: true)
@@ -41,5 +48,22 @@ class PaymentViewController: BaseController<PaymentPresenter>, PaymentView {
     func setPoints(points: [PaymentAccessAnnotation]) {
         points.forEach({ mapView.addAnnotation($0) })
     }
+
+    @IBAction func zoomIn(_ sender: Any) {
+        var region: MKCoordinateRegion = mapView.region
+        region.span.latitudeDelta /= 2.0
+        region.span.longitudeDelta /= 2.0
+        mapView.setRegion(region, animated: true)
+        presenter.changeZoom(latitude: region.center.latitude, longitude: region.center.longitude, zoomIn: true)
+    }
+
+    @IBAction func zoomOut(_ sender: Any) {
+        var region: MKCoordinateRegion = mapView.region
+        region.span.latitudeDelta = min(region.span.latitudeDelta * 2.0, 180.0)
+        region.span.longitudeDelta = min(region.span.longitudeDelta * 2.0, 180.0)
+        mapView.setRegion(region, animated: true)
+        presenter.changeZoom(latitude: region.center.latitude, longitude: region.center.longitude, zoomIn: false)
+    }
+
 
 }

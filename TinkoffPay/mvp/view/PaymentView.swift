@@ -11,4 +11,6 @@ protocol PaymentView: BaseView {
 
     func setRegion(radius: Double, latitude: Double, longitude: Double)
 
+    func setCurrentLocationButton()
+
 }

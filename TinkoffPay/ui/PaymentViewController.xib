@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentViewController" customModule="TinkoffPay" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="WqG-gE-8WZ" id="aP2-4P-OXc"/>
+                <outlet property="buttonIn" destination="whb-eg-MUT" id="nFK-gg-eAw"/>
+                <outlet property="buttonOut" destination="8fj-CQ-u89" id="g2K-zR-11G"/>
                 <outlet property="mapView" destination="TLB-gN-kH9" id="Vbx-x7-8xI"/>
                 <outlet property="view" destination="iN0-l3-epB" id="sFw-hE-wXd"/>
             </connections>
@@ -29,17 +31,47 @@
                     <rect key="frame" x="169" y="315" width="37" height="37"/>
                     <color key="color" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whb-eg-MUT">
+                    <rect key="frame" x="32" y="36" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Fvc-dp-CCf"/>
+                        <constraint firstAttribute="width" constant="30" id="lIO-3E-bY2"/>
+                    </constraints>
+                    <state key="normal" image="plus"/>
+                    <connections>
+                        <action selector="zoomIn:" destination="-1" eventType="touchUpInside" id="OSP-fb-7fA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fj-CQ-u89">
+                    <rect key="frame" x="32" y="74" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="CmM-MK-p3j"/>
+                        <constraint firstAttribute="height" constant="30" id="XrX-W1-6Vk"/>
+                    </constraints>
+                    <state key="normal" image="minus"/>
+                    <connections>
+                        <action selector="zoomOut:" destination="-1" eventType="touchUpInside" id="Ll6-dM-Mvd"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="TLB-gN-kH9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ABX-IZ-65Z"/>
+                <constraint firstItem="8fj-CQ-u89" firstAttribute="top" secondItem="whb-eg-MUT" secondAttribute="bottom" constant="8" id="DWW-A6-jZD"/>
                 <constraint firstItem="WqG-gE-8WZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="K2A-by-Hrw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TLB-gN-kH9" secondAttribute="trailing" id="UD0-hQ-Phf"/>
                 <constraint firstItem="WqG-gE-8WZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UpC-Lw-pwf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="TLB-gN-kH9" secondAttribute="bottom" id="WH5-UX-WJ1"/>
+                <constraint firstItem="whb-eg-MUT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="WcL-ag-zVq"/>
                 <constraint firstItem="TLB-gN-kH9" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="hST-Ot-I4a"/>
+                <constraint firstItem="whb-eg-MUT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="jCs-k4-dfp"/>
+                <constraint firstItem="8fj-CQ-u89" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="kVa-mX-SFP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
+    <resources>
+        <image name="minus" width="32" height="32"/>
+        <image name="plus" width="32" height="32"/>
+    </resources>
 </document>
