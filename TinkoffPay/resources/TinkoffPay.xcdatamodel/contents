@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="PartnerEntity" representedClassName="PartnerEntity" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastModified" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="picture" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,7 +18,7 @@
         <attribute name="workHours" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PartnerEntity" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="PartnerEntity" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="PaymentEntity" positionX="-54" positionY="18" width="128" height="165"/>
     </elements>
 </model>

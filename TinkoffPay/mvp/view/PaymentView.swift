@@ -7,4 +7,8 @@ import Foundation
 
 protocol PaymentView: BaseView {
 
+    func setPoints(points: [PaymentAccessAnnotation])
+
+    func setRegion(radius: Double, latitude: Double, longitude: Double)
+
 }

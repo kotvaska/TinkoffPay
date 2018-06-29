@@ -15,8 +15,8 @@ class PaymentAccessInteractor {
         self.modelSerializer = modelSerializer
     }
 
-    func getPartnerPaymentAccessList(partnerName: String, latitude: Double, longitude: Double, radius: Int = 1000, completion: Completion<PaymentAccessResponse>? = nil) {
-        networkClient.updatePaymentAccessPartnerList(partnerName: partnerName, latitude: latitude, longitude: longitude, radius: radius) { [weak self] payload, error in
+    func getPartnerPaymentAccessList(partnerName: String, latitude: Double, longitude: Double, radius: Double = 1000, completion: Completion<PaymentAccessResponse>? = nil) {
+        networkClient.updatePaymentAccessPartnerList(partnerName: partnerName, latitude: latitude, longitude: longitude, radius: Int(radius)) { [weak self] payload, error in
             guard let strongSelf = self,
                   error == nil,
                   let payload = payload?.payload,
@@ -31,8 +31,8 @@ class PaymentAccessInteractor {
         }
     }
 
-    func getPaymentAccessList(latitude: Double, longitude: Double, radius: Int = 1000, completion: Completion<PaymentAccessResponse>? = nil) {
-        networkClient.updatePaymentAccessAllList(latitude: latitude, longitude: longitude, radius: radius) { [weak self] payload, error in
+    func getPaymentAccessList(latitude: Double, longitude: Double, radius: Double = 1000, completion: Completion<PaymentAccessResponse>? = nil) {
+        networkClient.updatePaymentAccessAllList(latitude: latitude, longitude: longitude, radius: Int(radius)) { [weak self] payload, error in
             guard let strongSelf = self,
                   error == nil,
                   let payload = payload?.payload,

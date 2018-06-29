@@ -10,7 +10,7 @@ class PaymentPresenter: BasePresenter {
     typealias V = PaymentView
     var view: V!
     var controllerTitle: String = "Точки пополнения"
-    private let radius = 1000
+    private let radius: Double = 1000
 
     private var paymentFacade: PaymentFacade!
     private var locationInteractor: LocationInteractor!
@@ -33,30 +33,28 @@ class PaymentPresenter: BasePresenter {
             guard let strongSelf = self, let coordinates = coordinates, error == nil else {
                 return
             }
-            strongSelf.loadData(loadRequest: { _ in
-                return strongSelf.paymentFacade.getPaymentAccessList(
+
+            strongSelf.view.setRegion(radius: strongSelf.radius, latitude: coordinates.latitude, longitude: coordinates.longitude)
+
+            DispatchQueue.global().async() {
+                strongSelf.paymentFacade.getPaymentAccessList(
                         latitude: coordinates.latitude,
                         longitude: coordinates.longitude,
-                        radius: strongSelf.radius)
-            }) {
-                strongSelf.view.finishLoading()
+                        radius: strongSelf.radius) { [weak self] models, error in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    guard let models = models, error == nil else {
+                        strongSelf.view.alertError(message: error!.localizedDescription)
+                        return
+                    }
+                    strongSelf.paymentAccess = models
+                    strongSelf.view.setPoints(points: strongSelf.paymentAccess.compactMap({ PaymentAccessAnnotation(paymentAccess: $0) }))
+                    strongSelf.view.finishLoading()
+                }
             }
         }
 
-    }
-
-    private func loadData(loadRequest: (Completion<[PaymentAccess]>?) -> (), completion: @escaping () -> ()) {
-        loadRequest() { [weak self] models, error in
-            guard let strongSelf = self else {
-                return
-            }
-            guard let models = models, error == nil else {
-                strongSelf.view.alertError(message: error!.localizedDescription)
-                return
-            }
-            strongSelf.paymentAccess = models
-            completion()
-        }
     }
 
 }

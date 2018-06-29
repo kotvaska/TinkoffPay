@@ -57,38 +57,36 @@ class PaymentFacade {
                 completion?(nil, error)
                 return
             }
-            strongSelf.imageInteractor.saveIcon(iconName: partner.picture, image: image)
-            let partnerWithIcon = Partner(id: partner.id, name: partner.name, picture: partner.picture, url: partner.url, image: image)
-            completion?(partnerWithIcon, nil)
+
+            if partner.lastModified != response.partner.lastModified {
+                strongSelf.imageInteractor.saveIcon(iconName: partner.picture, image: image)
+            }
+            strongSelf.databaseInteractor.update(partner: response.partner) { error in
+                let partnerWithIcon = Partner(id: partner.id, name: partner.name, picture: partner.picture, url: partner.url, image: image)
+                completion?(partnerWithIcon, nil)
+            }
         }
     }
 
     func updatePartnersIcons(partners: [Partner], completion: Completion<[Partner]>? = nil) {
-        var partnersWithIcons = [Partner]()
-        partners.forEach { partner in
-            imageInteractor.getIcon(iconName: partner.picture) { [weak self] icon, error in
-                guard let strongSelf = self, let _ = error as? ImageStorageError else {
-                    return
-                }
-
-                guard let icon = icon else {
-                    strongSelf.loadPartnerIcon(partner: partner) { partner, error in
-                        guard let partner = partner, error == nil else {
-                            return
-                        }
-                        partnersWithIcons.append(Partner(id: partner.id, name: partner.name, picture: partner.picture, url: partner.url, image: partner.image))
+        DispatchQueue.global().sync {
+            partners.forEach { partner in
+                imageInteractor.getIcon(iconName: partner.picture) { [weak self] icon, error in
+                    guard let strongSelf = self, let _ = error as? ImageStorageError else {
+                        return
                     }
-                    return
-                }
 
-                partnersWithIcons.append(Partner(id: partner.id, name: partner.name, picture: partner.picture, url: partner.url, image: icon))
+                    if icon == nil {
+                        strongSelf.loadPartnerIcon(partner: partner)
+                    }
+                }
             }
+            completion?(partners, nil)
         }
 
-        completion?(partnersWithIcons, nil)
     }
 
-    func getPaymentAccessList(latitude: Double, longitude: Double, radius: Int = 1000, completion: Completion<[PaymentAccess]>? = nil) {
+    func getPaymentAccessList(latitude: Double, longitude: Double, radius: Double = 1000, completion: Completion<[PaymentAccess]>? = nil) {
         databaseInteractor.getPaymentAccessList(latitude: latitude, longitude: longitude, radius: radius) { [weak self] paymentAccessList, error in
             guard let strongSelf = self, let paymentAccessList = paymentAccessList, error == nil else {
                 completion?(nil, error)
@@ -98,13 +96,31 @@ class PaymentFacade {
             if paymentAccessList.isEmpty {
                 strongSelf.updatePaymentAccessList(latitude: latitude, longitude: longitude, radius: radius)
             } else {
-                completion?(paymentAccessList, error)
+                strongSelf.getPaymentAccessList(paymentAccessList: paymentAccessList, completion: completion)
             }
         }
 
     }
 
-    func updatePaymentAccessList(latitude: Double, longitude: Double, radius: Int = 1000, completion: Completion<[PaymentAccess]>? = nil) {
+    private func getPaymentAccessList(paymentAccessList: [PaymentAccess], completion: Completion<[PaymentAccess]>? = nil) {
+        getPartnersList() { [weak self] partners, error in
+            guard let strongSelf = self, error == nil else {
+                completion?(nil, error)
+                return
+            }
+
+            guard let partners = partners, error == nil else {
+                completion?(paymentAccessList, error)
+                return
+            }
+
+            let paymentAccessList = strongSelf.getPaymentPartnerInfo(partners: partners, paymentAccessList: paymentAccessList)
+            completion?(paymentAccessList, nil)
+        }
+
+    }
+
+    func updatePaymentAccessList(latitude: Double, longitude: Double, radius: Double = 1000, completion: Completion<[PaymentAccess]>? = nil) {
         databaseInteractor.clearAllData() { [weak self] error in
             guard let strongSelf = self, error == nil else {
                 completion?(nil, error)
@@ -135,8 +151,8 @@ class PaymentFacade {
 
     private func getPaymentPartnerInfo(partners: [Partner], paymentAccessList: [PaymentAccess]) -> [PaymentAccess] {
         return paymentAccessList.map { paymentAccess -> PaymentAccess in
-            if partners.contains(where: { $0.name == paymentAccess.partnerName }) {
-                let partner = partners.filter({ $0.name == paymentAccess.partnerName }).first
+            if partners.contains(where: { $0.id == paymentAccess.partnerName }) {
+                let partner = partners.filter({ $0.id == paymentAccess.partnerName }).first
                 return PaymentAccess(externalId: paymentAccess.externalId, partnerName: paymentAccess.partnerName,
                         workHours: paymentAccess.workHours, phones: paymentAccess.phones, fullAddress: paymentAccess.fullAddress,
                         bankInfo: paymentAccess.bankInfo, location: paymentAccess.location, name: partner?.name, picture: partner?.picture)

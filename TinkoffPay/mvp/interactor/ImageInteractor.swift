@@ -29,6 +29,26 @@ class ImageInteractor {
         }
     }
 
+    func loadImage(imageName: String?) -> UIImage? {
+        if let imageName = imageName {
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let fileUrl = documentsURL.appendingPathComponent(imageName)
+            if FileManager.default.fileExists(atPath: fileUrl.path) {
+                do {
+                    let imageData = try Data(contentsOf: fileUrl)
+                    return UIImage(data: imageData)
+
+                } catch let e {
+                    return nil
+                }
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+
     func getIcon(iconName: String, _ completion: (UIImage?, Error?) -> ()) {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileUrl = documentsURL.appendingPathComponent(iconName)
